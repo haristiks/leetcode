@@ -9,19 +9,6 @@ Please solve it without the built-in Array.map method.
 
  */
 
-/**
- * @param {number[]} arr
- * @param {Function} fn
- * @return {number[]}
- */
-var map = function (arr, fn) {
-  const result = [];
-  for (let x in arr) {
-    result.push(fn(arr[x],x*1));
-  }
-  return result;
-};
-
 /*
 Example 1:
 
@@ -40,4 +27,41 @@ Example 3:
 Input: arr = [10,20,30], fn = function constant() { return 42; }
 Output: [42,42,42]
 Explanation: The function always returns 42.
+*/
+
+//Solution
+
+/**
+ * @param {number[]} arr
+ * @param {Function} fn
+ * @return {number[]}
+ */
+var map = function (arr, fn) {
+  const result = [];
+  for (let x in arr) {
+    result.push(fn(arr[x],x*1));
+  }
+  return result;
+};
+
+
+
+/*
+Intuition
+
+The first thought is to iterate through the original array and apply the provided function fn to each element. Since we cannot use Array.map, we'll achieve this using a traditional for loop.
+
+Approach
+
+1. We create a new empty array result to store the transformed elements.
+2. We iterate through the original array arr using a for loop.
+3. Inside the loop, for each element arr[x], we call the function fn with two arguments:
+  The current element arr[x].
+  The current index x. Note that we convert x to a number using x * 1 because for...in loops iterate over indices as strings by default.
+4. The result of fn(arr[x], x) is pushed into the result array.
+5. Finally, we return the result array containing the transformed elements.
+Complexity
+
+Time Complexity: O(n), where n is the length of the input array. This is because we iterate through the entire array once using the for loop.
+Space Complexity: O(n), since we create a new array result to store the transformed elements.
 */
